@@ -1,4 +1,3 @@
-# frameworkless-web-application
 # Frameworkless Basic Web Application Kata
 
 It's the late 1990s and the internet has just begun to flourish. You have a brilliant idea to build a Hello World web application however there are no MVC frameworks for you to use. Your mission is to implement a basic Hello World web application without using any frameworks. 
