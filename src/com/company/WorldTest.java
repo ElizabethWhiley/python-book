@@ -41,4 +41,14 @@ class WorldTest {
         assertEquals(expected, greeting);
     }
 
+    @Test
+    void getAllUsers_whenGivenUserDatabse_ReturnsCorrectListResponse(){
+        HashMap<Integer, String> people = new HashMap<>();
+        people.put(0, "Elizabeth");
+        people.put(1, "Nik");
+        people.put(2, "Pavel");
+        String expected = "Elizabeth\nNik\nPavel";
+        String greeting = World.getAllUsers(people);
+        assertEquals(expected, greeting);
+    }
 }

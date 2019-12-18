@@ -38,7 +38,9 @@ class World {
             stringBuilder.append(name).append("\n");
         }
 
-        return stringBuilder.toString();
+        return stringBuilder
+                .deleteCharAt(stringBuilder.length() - 1)
+                .toString();
     }
 
 }
