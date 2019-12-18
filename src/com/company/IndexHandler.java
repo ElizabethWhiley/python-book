@@ -28,30 +28,20 @@ class IndexHandler implements HttpHandler {
                 response = Responses.getGreeting(dateToday, people);
                 break;
             case "POST": {
-                Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-                RequestReader requestReader = new RequestReader(scanner);
-                String requestBody = requestReader.getRequestAsString();
-                Request request = RequestBodyParser.parseRequest(requestBody);
-
+                Request request = RequestReaderParser.readAndParseRequest(exchange);
                 people.put(people.size(), request.getValue());
                 response = Responses.getGreeting(dateToday, people);
                 break;
             }
             case "PUT": {
-                Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-                RequestReader requestReader = new RequestReader(scanner);
-                String requestBody = requestReader.getRequestAsString();
-                Request request = RequestBodyParser.parseRequest(requestBody);
-                people.replace(request.getKey(), request.getValue());
+                Request request = RequestReaderParser.readAndParseRequest(exchange);
+                people.replace(Integer.parseInt(request.getKey()), request.getValue());
                 response = Responses.getGreeting(dateToday, people);
                 break;
             }
             case "DELETE": {
-                Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-                RequestReader requestReader = new RequestReader(scanner);
-                String requestBody = requestReader.getRequestAsString();
-                Request request = RequestBodyParser.parseRequest(requestBody);
-                people.entrySet().removeIf(entry -> (requestBody.equals(entry.getValue())));
+                Request request = RequestReaderParser.readAndParseRequest(exchange);
+                people.entrySet().removeIf(entry -> (request.getValue().equals(entry.getValue())));
                 response = Responses.getGreeting(dateToday, people);
                 break;
             }
@@ -62,5 +52,7 @@ class IndexHandler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
+
+
 
 }

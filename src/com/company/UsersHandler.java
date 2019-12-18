@@ -17,7 +17,6 @@ class UsersHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
 
         String response = "";
-//        TODO How is the people database still being updated? When the other handler is used it has the up to date one?
         if (exchange.getRequestMethod().equals("GET")) {
             response = Responses.getAllUsers(people);
         }

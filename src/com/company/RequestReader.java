@@ -1,10 +1,9 @@
 package com.company;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-//TODO: TEst with fake Scanner
+//TODO: Test with fake Scanner
+//InputStr = new ByteArrayInputStream(request.getBytes(StandardCharsets.UTF_8));
 public class RequestReader {
     private Scanner scanner;
 

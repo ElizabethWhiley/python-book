@@ -2,21 +2,20 @@ package com.company;
 
 public class Request {
 
-    private int key;
+    private String key;
     private String value;
 
-    public Request(int key, String value) {
+    public Request(String key, String value) {
         this.key = key;
         this.value = value;
     }
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 
     public String getValue() {
         return value;
     }
-
 
 }
