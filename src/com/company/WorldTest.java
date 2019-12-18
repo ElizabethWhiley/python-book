@@ -35,8 +35,8 @@ class WorldTest {
         HashMap<Integer, String> people = new HashMap<>();
         people.put(0, "Elizabeth");
         people.put(1, "Nik");
-        people.put(2, "Pravel");
-        String expected = "Hi Elizabeth, Nik and Pravel. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
+        people.put(2, "Pavel");
+        String expected = "Hi Elizabeth, Nik and Pavel. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
         String greeting = World.getGreeting(date, people);
         assertEquals(expected, greeting);
     }

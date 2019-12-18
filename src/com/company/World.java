@@ -13,6 +13,10 @@ class World {
         }
     }
 
+    static String getAllUsers(HashMap<Integer, String> people) {
+       return namesAsList(people);
+    }
+
     private static String namesAsString(HashMap<Integer, String> people) {
         ArrayList<String> names = new ArrayList<>(people.values());
         StringBuilder stringBuilder = new StringBuilder();
@@ -24,6 +28,17 @@ class World {
                 .substring (0, stringBuilder.length()-2)
                 + " and "
                 + names.get(names.size() - 1);
+    }
+
+    private static String namesAsList(HashMap<Integer, String> people) {
+        ArrayList<String> names = new ArrayList<>(people.values());
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String name : names) {
+            stringBuilder.append(name).append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 
 }

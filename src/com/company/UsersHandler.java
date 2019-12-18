@@ -4,15 +4,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Scanner;
 
-class Handler implements HttpHandler {
+class UsersHandler implements HttpHandler {
     private HashMap<Integer, String> people;
 
-    public Handler(HashMap<Integer, String> people) {
+    public UsersHandler(HashMap<Integer, String> people) {
         this.people = people;
     }
 
@@ -22,12 +20,7 @@ class Handler implements HttpHandler {
         String response = "";
         Date dateToday = new Date();
 
-        if (exchange.getRequestMethod().equals("POST")) {
-            Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-            String requestBody = scanner.useDelimiter("\\A").next();
-            people.put(people.size(), requestBody);
-            response = World.getGreeting(dateToday, people);
-        } else if(exchange.getRequestMethod().equals("GET")) {
+        if (exchange.getRequestMethod().equals("GET")) {
             response = World.getGreeting(dateToday, people);
         }
 
@@ -36,8 +29,4 @@ class Handler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
-
-
-
-
 }
