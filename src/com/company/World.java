@@ -17,11 +17,11 @@ class World {
         ArrayList<String> names = new ArrayList<>(people.values());
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < names.size() - 1; i++ ) {
-            stringBuilder.append(names.get(i)).append(",");
+            stringBuilder.append(names.get(i)).append(", ");
         }
 
         return stringBuilder.toString()
-                .substring (0, stringBuilder.length()-1)
+                .substring (0, stringBuilder.length()-2)
                 + " and "
                 + names.get(names.size() - 1);
     }
