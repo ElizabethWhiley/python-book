@@ -3,27 +3,34 @@ package com.company;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 class Handler implements HttpHandler {
+    private HashMap<Integer, String> people;
+
+    public Handler(HashMap<Integer, String> people) {
+        this.people = new HashMap<>();
+    }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        Date date = new Date();
 
-//        Maybe the database needs to be established somewhere else and passed into handler?
-        HashMap<Integer, String> people = new HashMap<>();
-        people.put(0, "Bob");
         String response = "";
+        Date dateToday = new Date();
 
         if (exchange.getRequestMethod().equals("POST")) {
-//            Need  to send the request body to a method that pulls the name out and adds it to the database. Then returns the database to give to the greeter.
-            response = World.addPerson(exchange.getResponseBody()); //need to write a test and update this method to print two people's names, and then three people's names
+            Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
+            String requestBody = scanner.useDelimiter("\\A").next();
+            System.out.println(requestBody);
         } else if(exchange.getRequestMethod().equals("GET")) {
-            response = World.getGreeting(date, people);
+            response = World.getGreeting(dateToday, people);
         }
 
         exchange.sendResponseHeaders(200, response.length()); //need to know length of content
@@ -31,6 +38,8 @@ class Handler implements HttpHandler {
         os.write(response.getBytes());
         os.close();
     }
+
+
 
 
 }

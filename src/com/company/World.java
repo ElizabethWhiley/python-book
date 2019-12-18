@@ -1,8 +1,11 @@
 package com.company;
 
-import java.io.OutputStream;
+import com.sun.net.httpserver.HttpExchange;
+
+import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class World {
 
@@ -10,7 +13,7 @@ public class World {
         return "Hi " + people.get(0) + ". The date and time is " + date;
     }
 
-    public static String addPerson(OutputStream responseBody) {
-
-    }
+//    static String addPerson(String httpExchange) throws IOException {
+//
+//    }
 }

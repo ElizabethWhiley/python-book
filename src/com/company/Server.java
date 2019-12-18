@@ -4,12 +4,20 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
 
 public class Server {
 
-    static void start() throws IOException {
+    private HashMap<Integer, String> people;
+
+    public Server() {
+        this.people = new HashMap<>();
+        people.put(0, "Bob");
+    }
+
+    void start() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/greeting", new Handler());
+        server.createContext("/", new Handler(people));
         server.setExecutor(null);
         server.start();
         System.out.println("Listening on http://localhost:8000");
