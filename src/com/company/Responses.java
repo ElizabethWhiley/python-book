@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-class World {
+class Responses {
 
     static String getGreeting(Date date, HashMap<Integer, String> people) {
         if (people.size() == 1) {

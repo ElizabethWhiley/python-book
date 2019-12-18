@@ -4,13 +4,12 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
-import java.util.Date;
 import java.util.HashMap;
 
 class UsersHandler implements HttpHandler {
     private HashMap<Integer, String> people;
 
-    public UsersHandler(HashMap<Integer, String> people) {
+    UsersHandler(HashMap<Integer, String> people) {
         this.people = people;
     }
 
@@ -18,10 +17,9 @@ class UsersHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
 
         String response = "";
-        Date dateToday = new Date();
-
+//        TODO How is the people database still being updated? When the other handler is used it has the up to date one?
         if (exchange.getRequestMethod().equals("GET")) {
-            response = World.getGreeting(dateToday, people);
+            response = Responses.getAllUsers(people);
         }
 
         exchange.sendResponseHeaders(200, response.length()); //need to know length of content

@@ -7,14 +7,14 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WorldTest {
+class ResponsesTest {
     @Test
     void getGreeting_whenGivenADateAndName_ReturnsCorrectResponse() {
         Date date = new Date(1576130640952L);
         HashMap<Integer, String> people = new HashMap<>();
         people.put(0, "Elizabeth");
         String expected = "Hi Elizabeth. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
-        String greeting = World.getGreeting(date, people);
+        String greeting = Responses.getGreeting(date, people);
         assertEquals(expected, greeting);
     }
 
@@ -25,7 +25,7 @@ class WorldTest {
         people.put(0, "Elizabeth");
         people.put(1, "Nik");
         String expected = "Hi Elizabeth and Nik. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
-        String greeting = World.getGreeting(date, people);
+        String greeting = Responses.getGreeting(date, people);
         assertEquals(expected, greeting);
     }
 
@@ -37,7 +37,7 @@ class WorldTest {
         people.put(1, "Nik");
         people.put(2, "Pavel");
         String expected = "Hi Elizabeth, Nik and Pavel. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
-        String greeting = World.getGreeting(date, people);
+        String greeting = Responses.getGreeting(date, people);
         assertEquals(expected, greeting);
     }
 
@@ -48,7 +48,7 @@ class WorldTest {
         people.put(1, "Nik");
         people.put(2, "Pavel");
         String expected = "Elizabeth\nNik\nPavel";
-        String greeting = World.getAllUsers(people);
+        String greeting = Responses.getAllUsers(people);
         assertEquals(expected, greeting);
     }
 }

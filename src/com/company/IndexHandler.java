@@ -12,7 +12,7 @@ import java.util.Scanner;
 class IndexHandler implements HttpHandler {
     private HashMap<Integer, String> people;
 
-    public IndexHandler(HashMap<Integer, String> people) {
+    IndexHandler(HashMap<Integer, String> people) {
         this.people = people;
     }
 
@@ -23,21 +23,36 @@ class IndexHandler implements HttpHandler {
         Date dateToday = new Date();
 
         switch (exchange.getRequestMethod()) {
+
             case "GET":
-                response = World.getGreeting(dateToday, people);
+                response = Responses.getGreeting(dateToday, people);
                 break;
             case "POST": {
                 Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-                String requestBody = scanner.useDelimiter("\\A").next();
-                people.put(people.size(), requestBody);
-                response = World.getGreeting(dateToday, people);
+                RequestReader requestReader = new RequestReader(scanner);
+                String requestBody = requestReader.getRequestAsString();
+                Request request = RequestBodyParser.parseRequest(requestBody);
+
+                people.put(people.size(), request.getValue());
+                response = Responses.getGreeting(dateToday, people);
+                break;
+            }
+            case "PUT": {
+                Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
+                RequestReader requestReader = new RequestReader(scanner);
+                String requestBody = requestReader.getRequestAsString();
+                Request request = RequestBodyParser.parseRequest(requestBody);
+                people.replace(request.getKey(), request.getValue());
+                response = Responses.getGreeting(dateToday, people);
                 break;
             }
             case "DELETE": {
                 Scanner scanner = new Scanner(exchange.getRequestBody(), StandardCharsets.UTF_8.name());
-                String requestBody = scanner.useDelimiter("\\A").next();
+                RequestReader requestReader = new RequestReader(scanner);
+                String requestBody = requestReader.getRequestAsString();
+                Request request = RequestBodyParser.parseRequest(requestBody);
                 people.entrySet().removeIf(entry -> (requestBody.equals(entry.getValue())));
-                response = World.getGreeting(dateToday, people);
+                response = Responses.getGreeting(dateToday, people);
                 break;
             }
         }
