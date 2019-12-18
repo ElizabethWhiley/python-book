@@ -12,8 +12,8 @@ class WorldTest {
     void getGreeting_whenGivenADateAndName_ReturnsCorrectResponse() {
         Date date = new Date(1576130640952L);
         HashMap<Integer, String> people = new HashMap<>();
-        people.put(0, "Bob");
-        String expected = "Hi Bob. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
+        people.put(0, "Elizabeth");
+        String expected = "Hi Elizabeth. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
         String greeting = World.getGreeting(date, people);
         assertEquals(expected, greeting);
     }
@@ -22,9 +22,21 @@ class WorldTest {
     void getGreeting_whenGivenADateAndTwoNames_ReturnsCorrectResponse(){
         Date date = new Date(1576130640952L);
         HashMap<Integer, String> people = new HashMap<>();
-        people.put(0, "Bob");
-        people.put(1, "Mary");
-        String expected = "Hi Bob and Mary. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
+        people.put(0, "Elizabeth");
+        people.put(1, "Nik");
+        String expected = "Hi Elizabeth and Nik. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
+        String greeting = World.getGreeting(date, people);
+        assertEquals(expected, greeting);
+    }
+
+    @Test
+    void getGreeting_whenGivenADateAndThreeNames_ReturnsCorrectResponse(){
+        Date date = new Date(1576130640952L);
+        HashMap<Integer, String> people = new HashMap<>();
+        people.put(0, "Elizabeth");
+        people.put(1, "Nik");
+        people.put(2, "Pravel");
+        String expected = "Hi Elizabeth, Nik and Pravel. The date and time is Thu Dec 12 17:04:00 AEDT 2019";
         String greeting = World.getGreeting(date, people);
         assertEquals(expected, greeting);
     }
