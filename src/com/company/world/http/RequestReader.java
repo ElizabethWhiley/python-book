@@ -1,4 +1,4 @@
-package com.company;
+package com.company.world.http;
 
 import java.util.Scanner;
 

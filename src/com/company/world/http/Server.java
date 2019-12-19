@@ -1,4 +1,4 @@
-package com.company;
+package com.company.world.http;
 
 import com.sun.net.httpserver.HttpServer;
 
@@ -8,14 +8,14 @@ import java.util.HashMap;
 
 public class Server {
 
-    private HashMap<Integer, String> people;
+    private HashMap<Integer, String> userDB;
 
     public Server() {
-        this.people = new HashMap<>();
+        this.userDB = new HashMap<>();
         people.put(0, "Bob");
     }
 
-    void start() throws IOException {
+    public void start() throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/", new IndexHandler(people));
         server.createContext("/users", new UsersHandler(people));

@@ -1,7 +1,7 @@
-package com.company.Tests;
+package com.company.world.Tests;
 
-import com.company.Request;
-import com.company.RequestBodyParser;
+import com.company.world.http.Request;
+import com.company.world.http.RequestBodyParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
