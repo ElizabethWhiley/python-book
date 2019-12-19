@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-class Responses {
+public class Responses {
 
-    static String getGreeting(Date date, HashMap<Integer, String> people) {
+    public static String getGreeting(Date date, HashMap<Integer, String> people) {
         if (people.size() == 1) {
             return "Hi " + people.get(0) + ". The date and time is " + date;
         } else {
@@ -13,7 +13,7 @@ class Responses {
         }
     }
 
-    static String getAllUsers(HashMap<Integer, String> people) {
+    public static String getAllUsers(HashMap<Integer, String> people) {
        return namesAsList(people);
     }
 

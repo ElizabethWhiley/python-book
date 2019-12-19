@@ -1,5 +1,6 @@
-package com.company;
+package com.company.Tests;
 
+import com.company.Responses;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
